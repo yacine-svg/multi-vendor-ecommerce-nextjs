@@ -12,6 +12,7 @@ export default async function Home() {
 
   return (
    <div>
+    <p>checking new rabbitcode</p>
       {JSON.stringify(data, null, 2)}
    </div>
   );
