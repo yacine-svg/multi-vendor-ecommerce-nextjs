@@ -4,8 +4,8 @@ interface Props {
      }>;
 }
 const page = async({params}:Props) => {
-    const { category } = await params;
-    const { subcategory } = await params;
+    const { category, subcategory } = await params;
+
 
 
     return (
