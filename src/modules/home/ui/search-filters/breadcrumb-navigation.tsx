@@ -46,7 +46,7 @@ export const BreadcrumbNavigation = ({
                 <BreadcrumbPage className="text-xl font-medium">
                 {activeCategoryName}
                 </BreadcrumbPage>
-        </BreadcrumbItem>)};
+        </BreadcrumbItem>)}
     </BreadcrumbList>
 </Breadcrumb>
 )};

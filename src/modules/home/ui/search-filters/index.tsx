@@ -21,7 +21,7 @@ export const SearchFilters = () => {
     const activeCategoryName = activeCategoryData?.name || null;
 
     const activeSubcategory = params.subcategory as string | undefined;
-    const actuveSubcategoryName = activeCategoryData?.subcategories?.find((subcategory) => subcategory.slug === activeSubcategory)?.name || null;
+    const activeSubcategoryName = activeCategoryData?.subcategories?.find((subcategory) => subcategory.slug === activeSubcategory)?.name || null;
 
     return (
     <div className="px-4 lg:px-12 py-8 border-b flex flex-col gap-4 w-full" style={{
@@ -34,7 +34,7 @@ export const SearchFilters = () => {
         <BreadcrumbNavigation 
         activeCategory={activeCategory}
         activeCategoryName={activeCategoryName}
-        activeSubcategoryName={actuveSubcategoryName}
+        activeSubcategoryName={activeSubcategoryName}
         />
     </div>
 )
