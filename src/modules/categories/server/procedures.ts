@@ -20,7 +20,6 @@ getMany: baseProcedure.query(async ({ctx}) => {
         subcategories: (doc.subcategories?.docs ?? []).map((doc) => ({
           // Because of 'depth: 1' in the query, subcategories are already populated
           ...(doc as Category),
-          subcategories: undefined, // Remove subcategories to avoid deep nesting
         }))
       }));
 
