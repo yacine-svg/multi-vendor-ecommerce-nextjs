@@ -5,7 +5,7 @@ import { Categories } from "./categories";
 import { SearchInput } from "./search-input";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { DEFAULT_BG_COLOR } from "../../constants";
+import { DEFAULT_BG_COLOR } from "../../../constants";
 import { BreadcrumbNavigation } from "./breadcrumb-navigation";
 
 

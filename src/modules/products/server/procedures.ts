@@ -8,6 +8,8 @@ getMany: baseProcedure
 .input(
   z.object({
     category: z.string().nullable().optional(),
+    maxPrice: z.string().nullable().optional(),
+    minPrice: z.string().nullable().optional(),
   }),
 )
 .query(async ({ctx, input}) => {
@@ -24,6 +26,16 @@ getMany: baseProcedure
         }
       }
     });
+    if(input.maxPrice){
+      where.price={
+        less_than_equal : input.maxPrice
+      };
+    };
+    if(input.minPrice){
+      where.price={
+        greater_than_equal : input.minPrice
+      };
+    };
 
      const formattedData = categoriesData.docs.map((doc) => ({
             ...doc,
@@ -41,10 +53,11 @@ getMany: baseProcedure
       subcategorieSlugs.push(
         ...parentCategory.subcategories.map((subcategory) => subcategory.slug)
       )
-    }
-    where["category.slug"] = {
+      where["category.slug"] = {
         in: [parentCategory.slug, ...subcategorieSlugs]
       }
+    }
+    
   }
         const data = await ctx.db.find({
                 collection: 'products',
