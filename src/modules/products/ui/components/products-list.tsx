@@ -37,7 +37,7 @@ export const ProductList = ({ category }: Props) => {
         return (
             <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg">
                 <InboxIcon />
-                <p className="text-base font-mdeium">No Products found</p>
+                <p className="text-base font-medium">No Products found</p>
             </div>
         )
     }
@@ -79,7 +79,7 @@ export const ProductListSkeleton = () => {
 return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
         {Array.from({ length: DEFAULT_LIMIT}).map((_, index) => (
-            <ProductCardSkeleton key={index}/>
+            <ProductCardSkeleton key={index} />
         ))}
     </div>
 );
