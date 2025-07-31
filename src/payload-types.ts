@@ -192,7 +192,7 @@ export interface Product {
   price: number;
   category?: (string | null) | Category;
   tags?: (string | Tag)[] | null;
-  images?: (string | Media)[] | null;
+  image?: (string | Media)[] | null;
   refundPolicy?: ('30-day' | '14-day' | '7-day' | '3-day' | '1-day' | 'no-refund') | null;
   updatedAt: string;
   createdAt: string;
@@ -334,7 +334,7 @@ export interface ProductsSelect<T extends boolean = true> {
   price?: T;
   category?: T;
   tags?: T;
-  images?: T;
+  image?: T;
   refundPolicy?: T;
   updatedAt?: T;
   createdAt?: T;
