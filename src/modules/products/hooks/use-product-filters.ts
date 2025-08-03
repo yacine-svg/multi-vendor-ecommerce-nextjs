@@ -18,7 +18,7 @@ tags: parseAsArrayOf(parseAsString)
 .withOptions({
     clearOnDefault: true,
 }) 
-.withDefault([])
+.withDefault([]),
 };
 
 export const useProductFilters = () => {
