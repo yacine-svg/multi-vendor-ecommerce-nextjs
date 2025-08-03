@@ -1,4 +1,4 @@
-import { Category, Media } from "@/payload-types";
+import { Category, Media, Tenant } from "@/payload-types";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { Sort, Where } from "payload";
 import { z } from "zod";
@@ -16,6 +16,7 @@ getMany: baseProcedure
     minPrice: z.string().nullable().optional(),
     tags: z.array(z.string()).nullable().optional(),
     sort: z.enum(sortValues).nullable().optional(),
+    tenantSlug: z.string().nullable().optional(),
   }),
 )
 .query(async ({ctx, input}) => {
@@ -45,6 +46,11 @@ getMany: baseProcedure
           less_than_equal : input.maxPrice,
         }
       }
+  if (input.tenantSlug) {
+    where["tenant.slug"] = {
+      equals: input.tenantSlug,
+    };
+  }
 
   if (input.category){
     const categoriesData = await ctx.db.find({
@@ -88,7 +94,7 @@ getMany: baseProcedure
         }
         const data = await ctx.db.find({
                 collection: 'products',
-                depth: 1,  //populize images and category
+                depth: 2,  //populize images and category
                 where,
                 sort, 
                 page: input.cursor,
@@ -99,6 +105,7 @@ return {
   docs: data.docs.map((doc) => ({
     ...doc,
     image: doc.image as Media | null,
+    tenant: doc.tenant as Tenant & { image: Media | null },
   }))
 };
 }),
