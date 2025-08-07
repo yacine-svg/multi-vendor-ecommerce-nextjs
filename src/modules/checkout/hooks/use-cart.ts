@@ -30,7 +30,7 @@ const clearTenantCart = () => {
 return {
     productIds,
     addProduct: (productId: string) => addProduct(tenantSlug, productId ),
-    removeProduct: (productId: string) => addProduct(tenantSlug, productId ),
+    removeProduct: (productId: string) => removeProduct(tenantSlug, productId ),
     clearCart: clearTenantCart,
     clearAllCarts,
     toggleProduct,
