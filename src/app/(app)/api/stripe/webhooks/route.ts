@@ -52,7 +52,7 @@ export async function POST(req: Request) {
                         id: data.metadata?.userId,
                     });
                     if (!user) {
-                        throw new Error("User nor found")
+                        throw new Error("User not found")
                     }
                     const expandedSession = await stripe.checkout.sessions.retrieve(
                         data.id,
