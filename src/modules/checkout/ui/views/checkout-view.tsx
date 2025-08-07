@@ -31,17 +31,18 @@ export const CheckoutView = ({tenantSlug}: CheckoutViewProps) => {
 
 
     if (isLoading) {
+        return(
          <div className="lg:pt-16 pt-4 px-4 lg:px-12">       
             <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg">
                 <LoaderIcon className="text-muted-foreground animate-spin" />
             </div>
         </div>
+        )
     }
 
     if (data?.totalDocs === 0 ) {
         return (
                 <div className="lg:pt-16 pt-4 px-4 lg:px-12">
-
                     <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg">
                         <InboxIcon />
                         <p className="text-base font-medium">No Products found</p>
@@ -76,7 +77,7 @@ export const CheckoutView = ({tenantSlug}: CheckoutViewProps) => {
             </div>
             <div className="lg:col-span-3">
                 <CheckoutSidebar 
-                total={data?.totalPrice}
+                total={data!.totalPrice}
                 onCheckout={() => {}}
                 isCanceled={false}
                 isPending={false}

@@ -49,7 +49,7 @@ export const CheckoutItem = ({
                     </Link>
                 </div>
             </div>
-            <div className="py-4 flex flex*col hustify-between">
+            <div className="py-4 flex flex-col hustify-between">
                 <p className="font-medium">
                     {formatCurrency(price)}
                 </p>
