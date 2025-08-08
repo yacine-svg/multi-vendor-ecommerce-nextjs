@@ -37,14 +37,12 @@ const session = useQuery(trpc.auth.session.queryOptions());
         <Button
         asChild
         variant="elevated">
-            <Link href="/library">
+            <Link prefetch href="/library">
              <BookmarkCheckIcon />
               Library
             </Link>
         </Button>
     )}
-    {/*TODO: Add Categories view all button*/}
-    {/*TODO: Add library button*/}
 </div>
     );
 };
