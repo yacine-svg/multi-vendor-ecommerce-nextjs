@@ -22,7 +22,7 @@ const handleChange = (value: number) => {
     <div
     className={cn(
         "flex items-center",
-        disabled && "opacity-50 cursor-not-allowed hover:scale-100",
+        disabled && "opacity-50 cursor-not-allowed",
         className,
         )}
         >

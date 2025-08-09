@@ -46,7 +46,7 @@ export const ReviewForm =({productId,initialData}:Props) => {
             toast.error(error.message);
         }
     }))
-    const updateReview = useMutation(trpc.reviews.create.mutationOptions({
+    const updateReview = useMutation(trpc.reviews.update.mutationOptions({
         onSuccess: () => {
             queryClient.invalidateQueries(trpc.reviews.getOne.queryOptions({
                 productId,

@@ -109,9 +109,9 @@ update: protectedProcedure
 )
 .mutation(async ({input, ctx}) => {
   const existingReview = await ctx.db.findByID({
+    depth:0,
     collection: "reviews",
     id: input.reviewId,
-    depth:0,
   });
 
   if (!existingReview) {
