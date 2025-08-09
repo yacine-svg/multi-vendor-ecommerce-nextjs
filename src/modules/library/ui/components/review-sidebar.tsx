@@ -1,5 +1,6 @@
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { ReviewForm } from "./review-form";
 
 interface Props {
     productId: string;
@@ -13,7 +14,10 @@ export const ReviewSidebar = ({ productId}:Props) => {
 
     return(
         <div>
-            {JSON.stringify(data, null, 2)}
+            <ReviewForm 
+            productId={productId}
+            initialData={data}
+            />
         </div>
     )
 }
