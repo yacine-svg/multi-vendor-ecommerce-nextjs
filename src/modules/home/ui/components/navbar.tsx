@@ -1,5 +1,5 @@
 "use client";
-import { Poppins } from 'next/font/google';
+import { poppins } from '@/lib/utils'; 
 import Link from 'next/link';
 
 
@@ -13,11 +13,6 @@ import { useTRPC } from '@/trpc/client';
 import { useQuery } from '@tanstack/react-query';
 
 
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['700'],
-});
 
 interface NavItemProps {
 href: string;
