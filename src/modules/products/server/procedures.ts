@@ -21,6 +21,9 @@ getOne: baseProcedure
     collection: "products",
     id: input.id,
     depth: 2,
+    select: {
+      content: false,
+    }
   });
 
   let isPurchased = false;
@@ -189,12 +192,15 @@ getMany: baseProcedure
           };
         }
         const data = await ctx.db.find({
-                collection: 'products',
+                collection: "products",
                 depth: 2,  //populize images and category
                 where,
                 sort, 
                 page: input.cursor,
                 limit: input.limit,
+                select: {
+                  content: false,
+                },
             });
 
             const dataWithSummarizeReviews = await Promise.all(
