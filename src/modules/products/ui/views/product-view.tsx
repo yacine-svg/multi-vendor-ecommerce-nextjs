@@ -78,7 +78,7 @@ export const ProductView = ({productId, tenantSlug}: Props) =>{
                                 iconClassName="size-4"
                                 />
                                 <p className="text-base font-medium">
-                                {data.reveiwCount} ratings
+                                {data.reviewCount} ratings
                             </p>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ export const ProductView = ({productId, tenantSlug}: Props) =>{
                             iconClassName="size-4"
                             />
                             <p className="text-base font-medium">
-                                {data.reveiwCount} ratings
+                                {data.reviewCount} ratings
                             </p>
                         </div>
                     </div>
@@ -144,7 +144,7 @@ export const ProductView = ({productId, tenantSlug}: Props) =>{
                                 <div className="flex items-center gap-x-1 font-medium">
                                     <StarIcon className="size-4 fill-black" />
                                     <p>({data.reviewRating})</p>
-                                    <p className="text-base">{data.reveiwCount} ratings</p>
+                                    <p className="text-base">{data.reviewCount} ratings</p>
                                 </div>
                             </div>
                             <div 

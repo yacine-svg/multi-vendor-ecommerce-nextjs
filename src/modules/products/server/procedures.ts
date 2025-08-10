@@ -96,7 +96,7 @@ getOne: baseProcedure
     image: product.image as Media | null,
     tenant: product.tenant as Tenant & {image: Media | null},
     reviewRating,
-    reveiwCount: reviews.totalDocs,
+    reviewCount: reviews.totalDocs,
     ratingDistribution
   };
 }
