@@ -5,8 +5,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 interface Props {
     params: Promise<{
         productId: string;
-        
-    }>
+     }>
 }
 
 const Page =async ({ params }: Props) => {
