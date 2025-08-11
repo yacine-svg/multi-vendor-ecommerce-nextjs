@@ -128,7 +128,7 @@ export const SignInView = () => {
                         variant="elevated"
                         className="bg-black text-white hover:bg-pink-400 hover:text-primary"
                         >
-                            Log in
+                            Login
                         </Button>
                     </form>
                 </Form>
