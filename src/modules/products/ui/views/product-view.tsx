@@ -11,6 +11,9 @@ import { CheckIcon, LinkIcon, StarIcon } from "lucide-react";
 import { Fragment, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+
+
 const CartButton = dynamic(
     () => import("../components/cart-button").then(
         (mod) => mod.CartButton,
@@ -96,7 +99,7 @@ export const ProductView = ({productId, tenantSlug}: Props) =>{
                     </div>
                     <div className="p-6">
                         {data.description ? (
-                            <p>{data.description}</p>
+                            <RichText data={data.description} />
                         ) : (
                             <p className="font-medium text-muted-foreground italic">
                                 No description provided
@@ -168,6 +171,23 @@ export const ProductView = ({productId, tenantSlug}: Props) =>{
                         </div>
                     </div>
                  </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const ProductViewSkeleton = () => {
+    return(
+        <div className="px-4 lg:px-12 py-10">
+            <div className="border rounded-sm bg-white overflow-hidden">
+                <div className="relative aspect-[3.9] border-b">
+                    <Image 
+                    src="/placeholder.png"
+                    alt="placeholder"
+                    fill
+                    className="object-cover"
+                    />
                 </div>
             </div>
         </div>
