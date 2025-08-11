@@ -6,7 +6,7 @@ const getDropDownPosition = () => {
     const rect = ref.current.getBoundingClientRect();
     const dropdownWidth = 240;
     let left = rect.left + window.scrollX;
-    let top = rect.bottom + window.scrollY;
+    const top = rect.bottom + window.scrollY;
     // Check if the dropdown goes off the right side of the screen
     if (left + dropdownWidth > window.innerWidth) {
         left = rect.right + window.scrollX - dropdownWidth; // 16px for padding
