@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function generateTenantUrl(tenantSlug: string) {
   const isDevelopment = process.env.NODE_ENV === "development";
-  const isSubdomainRoutingEnabled = Boolean(process.env.NEXT_PUBLIC_ENABLE_SUBDOMAIN_ROUTING!);
+  const isSubdomainRoutingEnabled = process.env.NEXT_PUBLIC_ENABLE_SUBDOMAIN_ROUTING === "true";
   // in development or subdomain disabled mode use normal routing
   if(isDevelopment || !isSubdomainRoutingEnabled) {
    return `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/tenants/${tenantSlug}`;
