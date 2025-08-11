@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useState, useRef, use } from "react";
+import { useState, useRef } from "react";
 import { SubcategoryMenu } from "./subcategory-menu";
 import Link from "next/link";
 import { CategoriesGetManyOutput } from "@/modules/categories/types";
