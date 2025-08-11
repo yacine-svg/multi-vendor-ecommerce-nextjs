@@ -76,13 +76,18 @@ purchase: protectedProcedure
           "tenant.slug": {
             equals: input.tenantSlug
           }
+        },
+        {
+          isArchived: {
+            not_equals: true,
+          }
         }
       ]
     }
   })
 
   if (products.totalDocs !== input.productIds.length) {
-    throw new TRPCError({ code: "NOT_FOUND", message: "PRoducts not found"})
+    throw new TRPCError({ code: "NOT_FOUND", message: "Products not found"})
   }
 
   const tenantsData = await ctx.db.find({
@@ -171,21 +176,35 @@ getProducts: baseProcedure
 )
 .query(async ({ctx, input}) => {
     const data = await ctx.db.find({
-            collection: 'products',
+            collection: "products",
             depth: 2,  
             where: {
-              id: {
-                in: input.ids,
-              }
+              and: [
+                {
+                  id: {
+                    in: input.ids,
+                  }
+                },
+                {
+                  isArchived: {
+                    not_equals: true,
+                  }
+                }
+              ]
             }
         });
 
         if (data.totalDocs !== input.ids.length) {
           throw new TRPCError({code: "NOT_FOUND", message:"products not found"})
         }
+        const totalPrice = data.docs.reduce((acc, product) => {
+          const price = Number(product.price);
+          return acc + (isNaN(price) ? 0 : price);
+        }, 0);
+
 return {  
   ...data,
-  totalPrice: data.docs.reduce((acc, product) => acc + product.price, 0),
+  totalPrice: totalPrice,
   docs: data.docs.map((doc) => ({
     ...doc,
     image: doc.image as Media | null,

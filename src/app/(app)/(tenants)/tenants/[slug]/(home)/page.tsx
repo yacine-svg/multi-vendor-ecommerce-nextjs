@@ -10,7 +10,7 @@ interface Props {
 searchParams: Promise<SearchParams>;
 params: Promise<{slug: string}>;
 }
-
+//page
 const Page = async ({ params, searchParams}: Props) => {
     const {slug} = await params;
     const filters = await loadProductFilters(searchParams);
