@@ -65,7 +65,7 @@ export const SignUpView = () => {
     return (
         <div className="min-h-screen grid grid-cols-1 lg:grid-cols-5">
             {/* Left Panel - Form */}
-            <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 lg:col-span-3 flex items-center justify-center p-6 lg:p-8">
+            <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 lg:col-span-3 flex items-center justify-center p-4 lg:p-8">
                 <div className="w-full max-w-md space-y-8">
                     {/* Header */}
                     <div className="flex items-center justify-between">
@@ -81,7 +81,7 @@ export const SignUpView = () => {
                             asChild
                             variant="ghost"
                             size="sm"
-                            className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 transition-all duration-200 rounded-full px-4 py-2"
+                            className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 transition-all duration-200 rounded-full px-4"
                         >
                             <Link prefetch href="/sign-in">
                                 Sign in
@@ -90,11 +90,11 @@ export const SignUpView = () => {
                     </div>
 
                     {/* Welcome Section */}
-                    <div className="text-center lg:text-left space-y-3 mb-6">
-                        <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                    <div className="text-center lg:text-left space-y-3">
+                        <h1 className="text-4xl lg:text-4xl font-bold text-gray-900 leading-tight">
                             Join over <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">1000 creators</span> earning money on Funroad
                         </h1>
-                        <p className="text-base text-gray-600">
+                        <p className="text-lg text-gray-600">
                             Build your store and start selling in minutes
                         </p>
                     </div>
@@ -115,7 +115,7 @@ export const SignUpView = () => {
                                         <FormControl>
                                             <Input 
                                                 {...field}
-                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
+                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
                                                 placeholder="Choose your username"
                                             />
                                         </FormControl>
@@ -123,7 +123,7 @@ export const SignUpView = () => {
                                             "opacity-0 transform -translate-y-2 transition-all duration-300",
                                             showPreview && "opacity-100 translate-y-0"
                                         )}>
-                                            <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200/50 mt-2">
+                                            <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200/50">
                                                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                                                 <span className="text-sm text-gray-700">
                                                     Your store will be available at{" "}
@@ -133,7 +133,7 @@ export const SignUpView = () => {
                                                 </span>
                                             </div>
                                         </FormDescription>
-                                        <FormMessage className="text-red-500 text-sm mt-1" />
+                                        <FormMessage className="text-red-500" />
                                     </FormItem>
                                 )}
                             />
@@ -149,11 +149,11 @@ export const SignUpView = () => {
                                             <Input 
                                                 {...field}
                                                 type="email"
-                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
+                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
                                                 placeholder="Enter your email"
                                             />
                                         </FormControl>
-                                        <FormMessage className="text-red-500 text-sm mt-1" />
+                                        <FormMessage className="text-red-500" />
                                     </FormItem>
                                 )}
                             />
@@ -169,11 +169,11 @@ export const SignUpView = () => {
                                             <Input 
                                                 {...field}
                                                 type="password"
-                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
+                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
                                                 placeholder="Create a strong password"
                                             />
                                         </FormControl>
-                                        <FormMessage className="text-red-500 text-sm mt-1" />
+                                        <FormMessage className="text-red-500" />
                                     </FormItem>
                                 )}
                             />
@@ -182,7 +182,7 @@ export const SignUpView = () => {
                                 disabled={register.isPending}
                                 type="submit"
                                 size="lg"
-                                className="w-full h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                                className="w-full h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:hover:scale-100"
                             >
                                 {register.isPending ? (
                                     <div className="flex items-center gap-2">
@@ -195,7 +195,7 @@ export const SignUpView = () => {
                             </Button>
 
                             {/* Terms and Privacy */}
-                            <p className="text-xs text-gray-500 text-center leading-relaxed pt-2">
+                            <p className="text-xs text-gray-500 text-center leading-relaxed">
                                 By creating an account, you agree to our{" "}
                                 <Link href="/terms" className="text-purple-600 hover:underline font-medium">
                                     Terms of Service

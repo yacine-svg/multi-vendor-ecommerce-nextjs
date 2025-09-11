@@ -59,7 +59,7 @@ export const SignInView = () => {
     return (
         <div className="min-h-screen grid grid-cols-1 lg:grid-cols-5">
             {/* Left Panel - Form */}
-            <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 lg:col-span-3 flex items-center justify-center p-6 lg:p-8">
+            <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 lg:col-span-3 flex items-center justify-center p-4 lg:p-8">
                 <div className="w-full max-w-md space-y-8">
                     {/* Header */}
                     <div className="flex items-center justify-between">
@@ -75,7 +75,7 @@ export const SignInView = () => {
                             asChild
                             variant="ghost"
                             size="sm"
-                            className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 transition-all duration-200 rounded-full px-4 py-2"
+                            className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 transition-all duration-200 rounded-full px-4"
                         >
                             <Link prefetch href="/sign-up">
                                 Sign up
@@ -84,11 +84,11 @@ export const SignInView = () => {
                     </div>
 
                     {/* Welcome Section */}
-                    <div className="text-center lg:text-left space-y-2 mb-6">
-                        <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                    <div className="text-center lg:text-left space-y-2">
+                        <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                             Welcome back
                         </h1>
-                        <p className="text-base text-gray-600">
+                        <p className="text-lg text-gray-600">
                             Sign in to continue your creative journey
                         </p>
                     </div>
@@ -109,11 +109,11 @@ export const SignInView = () => {
                                         <FormControl>
                                             <Input 
                                                 {...field}
-                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
+                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
                                                 placeholder="Enter your email"
                                             />
                                         </FormControl>
-                                        <FormMessage className="text-red-500 text-sm mt-1" />
+                                        <FormMessage className="text-red-500" />
                                     </FormItem>
                                 )}
                             />
@@ -128,11 +128,11 @@ export const SignInView = () => {
                                             <Input 
                                                 {...field}
                                                 type="password"
-                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
+                                                className="h-12 border-2 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20 rounded-xl transition-all duration-200 text-base"
                                                 placeholder="Enter your password"
                                             />
                                         </FormControl>
-                                        <FormMessage className="text-red-500 text-sm mt-1" />
+                                        <FormMessage className="text-red-500" />
                                     </FormItem>
                                 )}
                             />
@@ -141,7 +141,7 @@ export const SignInView = () => {
                                 disabled={login.isPending}
                                 type="submit"
                                 size="lg"
-                                className="w-full h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                                className="w-full h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:hover:scale-100"
                             >
                                 {login.isPending ? (
                                     <div className="flex items-center gap-2">
@@ -154,7 +154,7 @@ export const SignInView = () => {
                             </Button>
 
                             {/* Additional Links */}
-                            <div className="text-center pt-2">
+                            <div className="text-center pt-4">
                                 <Link 
                                     href="/forgot-password" 
                                     className="text-purple-600 hover:text-purple-700 text-sm font-medium hover:underline transition-colors"
