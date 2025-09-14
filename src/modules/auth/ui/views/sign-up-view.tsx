@@ -132,7 +132,7 @@ export const SignUpView = () => {
                             <FormField
                                 name="username"
                                 render={({field}) => (
-                                    <FormItem className="space-y-2">
+                                    <FormItem className="space-y-2 mb-6">
                                         <FormLabel className="text-base font-semibold text-gray-700 flex items-center gap-2">
                                             Username
                                             <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">
@@ -158,7 +158,7 @@ export const SignUpView = () => {
                                             </div>
                                         </FormControl>
                                         <FormDescription className={cn(
-                                            "opacity-0 transform -translate-y-2 transition-all duration-300",
+                                            "opacity-0 transform -translate-y-2 transition-all duration-300 -mt-1",
                                             showPreview && "opacity-100 translate-y-0"
                                         )}>
                                             <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-50 via-pink-50 to-blue-50 rounded-lg border border-purple-200/50 backdrop-blur-sm">
@@ -179,7 +179,7 @@ export const SignUpView = () => {
                             <FormField
                                 name="email"
                                 render={({field}) => (
-                                    <FormItem className="space-y-2">
+                                    <FormItem className="space-y-2 mb-6">
                                         <FormLabel className="text-base font-semibold text-gray-700">
                                             Email
                                         </FormLabel>
@@ -238,7 +238,7 @@ export const SignUpView = () => {
                             </Button>
 
                             {/* Terms and Privacy */}
-                            <div className="space-y-4">
+                            <div className="space-y-4 mb-6">
                                 <p className="text-xs text-gray-500 text-center leading-relaxed">
                                     By creating an account, you agree to our{" "}
                                     <Link href="/terms" className="text-purple-600 hover:text-purple-700 hover:underline font-medium transition-colors">
