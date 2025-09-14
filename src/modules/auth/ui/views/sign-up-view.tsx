@@ -282,71 +282,71 @@ export const SignUpView = () => {
                 
                 {/* Overlay Content */}
                 <div className="absolute inset-0 z-30 flex items-end p-8 lg:p-12">
-                    <div className="text-white space-y-8 max-w-md">
+                    <div className="backdrop-blur-md bg-black/20 border border-white/20 rounded-2xl p-8 space-y-8 max-w-md shadow-2xl">
                         <div className="space-y-4">
-                            <h2 className="text-3xl xl:text-4xl font-bold leading-tight tracking-tight">
+                            <h2 className="text-3xl xl:text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg">
                                 Your creative empire starts here
                             </h2>
-                            <p className="text-lg xl:text-xl opacity-90 leading-relaxed font-medium">
+                            <p className="text-lg xl:text-xl text-white/95 leading-relaxed font-medium drop-shadow-md">
                                 Transform your passion into profit with our powerful creator platform.
                             </p>
                         </div>
                         
                         {/* Feature list */}
                         <div className="space-y-4">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-green-500/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-green-400/30">
-                                    <svg className="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <div className="flex items-center gap-4 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                                <div className="w-12 h-12 bg-green-500/30 backdrop-blur-sm rounded-xl flex items-center justify-center border border-green-400/40">
+                                    <svg className="w-6 h-6 text-green-300 drop-shadow-md" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <div className="font-semibold text-lg">Set up in minutes</div>
-                                    <div className="text-sm opacity-80">No technical knowledge required</div>
+                                    <div className="font-semibold text-lg text-white drop-shadow-md">Set up in minutes</div>
+                                    <div className="text-sm text-white/80 drop-shadow-sm">No technical knowledge required</div>
                                 </div>
                             </div>
                             
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-blue-500/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-blue-400/30">
-                                    <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <div className="flex items-center gap-4 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                                <div className="w-12 h-12 bg-blue-500/30 backdrop-blur-sm rounded-xl flex items-center justify-center border border-blue-400/40">
+                                    <svg className="w-6 h-6 text-blue-300 drop-shadow-md" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
                                         <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <div className="font-semibold text-lg">Instant payments</div>
-                                    <div className="text-sm opacity-80">Get paid immediately after each sale</div>
+                                    <div className="font-semibold text-lg text-white drop-shadow-md">Instant payments</div>
+                                    <div className="text-sm text-white/80 drop-shadow-sm">Get paid immediately after each sale</div>
                                 </div>
                             </div>
                             
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-purple-500/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-purple-400/30">
-                                    <svg className="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                            <div className="flex items-center gap-4 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                                <div className="w-12 h-12 bg-purple-500/30 backdrop-blur-sm rounded-xl flex items-center justify-center border border-purple-400/40">
+                                    <svg className="w-6 h-6 text-purple-300 drop-shadow-md" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM9 7a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 000-2H9z" />
                                         <path d="M7 14a5.971 5.971 0 003 1.86A5.971 5.971 0 0013 14H7z" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <div className="font-semibold text-lg">Creator community</div>
-                                    <div className="text-sm opacity-80">Learn from successful creators</div>
+                                    <div className="font-semibold text-lg text-white drop-shadow-md">Creator community</div>
+                                    <div className="text-sm text-white/80 drop-shadow-sm">Learn from successful creators</div>
                                 </div>
                             </div>
                         </div>
                         
                         {/* Success metrics */}
-                        <div className="pt-6 border-t border-white/20">
+                        <div className="pt-6 border-t border-white/30">
                             <div className="grid grid-cols-3 gap-4">
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-white">1000+</div>
-                                    <div className="text-xs opacity-80">Active creators</div>
+                                    <div className="text-2xl font-bold text-white drop-shadow-lg">1000+</div>
+                                    <div className="text-xs text-white/80 drop-shadow-sm">Active creators</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-white">$2M+</div>
-                                    <div className="text-xs opacity-80">Total earnings</div>
+                                    <div className="text-2xl font-bold text-white drop-shadow-lg">$2M+</div>
+                                    <div className="text-xs text-white/80 drop-shadow-sm">Total earnings</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-2xl font-bold text-white">4.9★</div>
-                                    <div className="text-xs opacity-80">Creator rating</div>
+                                    <div className="text-2xl font-bold text-white drop-shadow-lg">4.9★</div>
+                                    <div className="text-xs text-white/80 drop-shadow-sm">Creator rating</div>
                                 </div>
                             </div>
                         </div>

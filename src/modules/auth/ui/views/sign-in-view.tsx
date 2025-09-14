@@ -219,12 +219,12 @@ export const SignInView = () => {
                 
                 {/* Overlay Content */}
                 <div className="absolute inset-0 z-30 flex items-end p-8 lg:p-12">
-                    <div className="text-white space-y-6 max-w-md">
+                    <div className="backdrop-blur-md bg-black/20 border border-white/20 rounded-2xl p-8 space-y-6 max-w-md shadow-2xl">
                         <div className="space-y-4">
-                            <h2 className="text-3xl xl:text-4xl font-bold leading-tight tracking-tight">
+                            <h2 className="text-3xl xl:text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg">
                                 Start your creative journey
                             </h2>
-                            <p className="text-lg xl:text-xl opacity-90 leading-relaxed font-medium">
+                            <p className="text-lg xl:text-xl text-white/95 leading-relaxed font-medium drop-shadow-md">
                                 Join thousands of creators who are already building their success story with Funroad.
                             </p>
                         </div>
@@ -232,18 +232,18 @@ export const SignInView = () => {
                         {/* Stats */}
                         <div className="flex items-center gap-6 pt-4">
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-white">1000+</div>
-                                <div className="text-sm opacity-80">Creators</div>
+                                <div className="text-2xl font-bold text-white drop-shadow-lg">1000+</div>
+                                <div className="text-sm text-white/80 drop-shadow-sm">Creators</div>
                             </div>
-                            <div className="w-px h-12 bg-white/20" />
+                            <div className="w-px h-12 bg-white/30" />
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-white">$2M+</div>
-                                <div className="text-sm opacity-80">Earned</div>
+                                <div className="text-2xl font-bold text-white drop-shadow-lg">$2M+</div>
+                                <div className="text-sm text-white/80 drop-shadow-sm">Earned</div>
                             </div>
-                            <div className="w-px h-12 bg-white/20" />
+                            <div className="w-px h-12 bg-white/30" />
                             <div className="text-center">
-                                <div className="text-2xl font-bold text-white">99%</div>
-                                <div className="text-sm opacity-80">Uptime</div>
+                                <div className="text-2xl font-bold text-white drop-shadow-lg">99%</div>
+                                <div className="text-sm text-white/80 drop-shadow-sm">Uptime</div>
                             </div>
                         </div>
                     </div>
