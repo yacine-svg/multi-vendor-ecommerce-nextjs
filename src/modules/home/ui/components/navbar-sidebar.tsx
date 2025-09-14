@@ -44,7 +44,7 @@ export const NavbarSidebar = ({ items, open, onOpenChange }: Props) => {
                 <ScrollArea className="flex flex-col overflow-y-auto h-full pb-6">
                     {/* Main Navigation */}
                     <div className="px-3 py-4 space-y-1">
-                        {items.map((item, index) => (
+                        {items.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
