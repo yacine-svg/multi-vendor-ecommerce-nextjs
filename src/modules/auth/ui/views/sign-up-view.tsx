@@ -143,7 +143,7 @@ export const SignUpView = () => {
                                             <div className="relative">
                                                 <Input 
                                                     {...field}
-                                                    className="h-12 border-2 border-gray-200/80 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 rounded-xl transition-all duration-300 text-base bg-white/80 backdrop-blur-sm hover:bg-white hover:border-gray-300 placeholder:text-gray-400 pl-4"
+                                                    className="h-12 border-2 border-gray-200/80 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 rounded-xl transition-all duration-300 text-base bg-white/80 backdrop-blur-sm hover:bg-white hover:border-gray-300 placeholder:text-gray-400 pl-4 pr-12"
                                                     placeholder="Choose your username"
                                                 />
                                                 {username && !usernameErrors && (
@@ -158,8 +158,8 @@ export const SignUpView = () => {
                                             </div>
                                         </FormControl>
                                         <FormDescription className={cn(
-                                            "opacity-0 transform -translate-y-2 transition-all duration-300 -mt-1",
-                                            showPreview && "opacity-100 translate-y-0"
+                                            "opacity-0 h-0 transition-all duration-300 overflow-hidden",
+                                            showPreview && "opacity-100 h-auto mt-2"
                                         )}>
                                             <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-50 via-pink-50 to-blue-50 rounded-lg border border-purple-200/50 backdrop-blur-sm">
                                                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -171,7 +171,7 @@ export const SignUpView = () => {
                                                 </span>
                                             </div>
                                         </FormDescription>
-                                        <FormMessage className="text-red-500 text-sm font-medium" />
+                                        <FormMessage className="text-red-500 text-sm font-medium mt-2" />
                                     </FormItem>
                                 )}
                             />
