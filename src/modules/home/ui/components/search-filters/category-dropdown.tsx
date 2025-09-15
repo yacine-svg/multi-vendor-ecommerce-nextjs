@@ -6,63 +6,79 @@ import { useState, useRef } from "react";
 import { SubcategoryMenu } from "./subcategory-menu";
 import Link from "next/link";
 import { CategoriesGetManyOutput } from "@/modules/categories/types";
-interface Props {
-    category: CategoriesGetManyOutput[1];
-    isActive: boolean;
-    isNavigationHovored: boolean;
-};
+import { ChevronDown, Dot } from "lucide-react";
 
-export const CategoryDropdown =({
-    category,
-    isActive,
-    isNavigationHovored
-}:Props)=> {
-const [isOpen, setIsOpen] = useState(false);
-const dropdownRef = useRef<HTMLDivElement>(null);
-const onMouseEnter = () => {
-    if(category.subcategories) {
-        setIsOpen(true);
+interface Props {
+  category: CategoriesGetManyOutput[1];
+  isActive: boolean;
+  isNavigationHovered: boolean;
+}
+
+export const CategoryDropdown = ({
+  category,
+  isActive,
+  isNavigationHovered,
+}: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const onMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (category.subcategories?.length) {
+      setIsOpen(true);
     }
-}
-const onMouseLeave = () => setIsOpen(false);
-/*const toggleDropdown = () => {
-if (category.subcategories?.length) {
-    setIsOpen((!isOpen));
-}
-}*/
-    return (
-        <div 
-        className="relative"
-        ref={dropdownRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        //onClick={toggleDropdown}
-        >
-            <div className="relative">
-    <Button 
-    variant="elevated"
-    className={cn(
-       "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-primary text-black",
-       isActive && !isNavigationHovored && "bg-white border-primary",
-       isOpen && "bg-white border-primary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-x-[4px] -translate-y-[4px]",
-    )}>
-        <Link
-        href={`/${category.slug === "all" ? "" : category.slug}`}
-        >
-        {category.name}
+  };
+
+  const onMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 150);
+  };
+
+  const hasSubcategories = category.subcategories && category.subcategories.length > 0;
+
+  return (
+    <div
+      className="relative"
+      ref={dropdownRef}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <Button
+        variant="ghost"
+        size="sm"
+        className={cn(
+          "relative rounded-full px-4 py-2 font-medium transition-all duration-200",
+          "border-2 border-transparent text-slate-700",
+          "hover:bg-white/90 hover:border-slate-200 hover:text-slate-900 hover:shadow-lg hover:scale-105 transform",
+          "backdrop-blur-sm",
+          // Active state
+          isActive && "bg-white border-slate-300 text-slate-900 shadow-lg scale-105",
+          // Open state
+          isOpen && "bg-white border-slate-300 text-slate-900 shadow-xl scale-105 -translate-y-0.5",
+          // Navigation hovered state
+          !isActive && !isOpen && isNavigationHovered && "bg-white/60 border-slate-100"
+        )}
+        asChild
+      >
+        <Link href={`/${category.slug === "all" ? "" : category.slug}`}>
+          <span className="flex items-center gap-1.5">
+            {isActive && <Dot className="w-4 h-4 text-blue-500 -ml-1" />}
+            {category.name}
+            {hasSubcategories && (
+              <ChevronDown 
+                className={cn(
+                  "w-3 h-3 transition-all duration-200",
+                  isOpen && "rotate-180 scale-110"
+                )} 
+              />
+            )}
+          </span>
         </Link>
-    </Button>
-    {category.subcategories && category.subcategories.length > 0 && (
-        <div 
-        className={cn("opacity-0 absolute -bottom-3 w-0 h-0 border-l-[10px] border-r-[10px] border-b-[10px] border-l-transparent border-r-transparent border-b-black left-1/2 -translate-x-1/2",
-        isOpen && "opacity-100"
-    ) } 
-    />)}
+      </Button>
+
+      <SubcategoryMenu category={category} isOpen={isOpen} />
     </div>
-    <SubcategoryMenu
-    category={category}
-    isOpen={isOpen}
-    />
-    </div>
-    );
-}
+  );
+};
