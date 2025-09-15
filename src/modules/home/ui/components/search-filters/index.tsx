@@ -8,8 +8,6 @@ import { useParams } from "next/navigation";
 import { DEFAULT_BG_COLOR } from "../../../constants";
 import { BreadcrumbNavigation } from "./breadcrumb-navigation";
 import { useProductFilters } from "@/modules/products/hooks/use-product-filters";
-import { Sparkles, Star } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export const SearchFilters = () => {
   const trpc = useTRPC();
