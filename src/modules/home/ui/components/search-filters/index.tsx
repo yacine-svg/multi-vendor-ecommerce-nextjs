@@ -30,82 +30,27 @@ export const SearchFilters = () => {
     )?.name || null;
 
   return (
-    <div
-      className="relative overflow-hidden border-b-2 border-slate-200/50"
-      style={{
-        background: `linear-gradient(135deg, ${activeCategoryColor} 0%, ${activeCategoryColor}d0 70%, ${activeCategoryColor}b0 100%)`,
-      }}
-    >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2 animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl translate-y-1/2 animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-white rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-pulse" style={{ animationDelay: '1s' }} />
-      </div>
-
-      {/* Floating decorative icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <Sparkles className="absolute top-8 right-8 w-6 h-6 text-white/30 animate-bounce" style={{ animationDelay: '0.5s' }} />
-        <Star className="absolute bottom-8 left-8 w-4 h-4 text-white/30 animate-bounce" style={{ animationDelay: '1.5s' }} />
-        <Sparkles className="absolute top-20 left-20 w-4 h-4 text-white/20 animate-bounce" style={{ animationDelay: '2.5s' }} />
-      </div>
-
-      {/* Main content */}
-      <div className="relative px-4 lg:px-12 py-8 space-y-6">
-        {/* Search input section */}
-        <div className="space-y-2">
-          <SearchInput
-            defaultValue={filters.search}
-            onChange={(value) => setFilters({ search: value })}
-          />
-          
-          {/* Search tips for empty state */}
-          {!filters.search && (
-            <div className="flex items-center gap-4 text-sm text-slate-600/80 ml-2">
-              <span className="hidden sm:inline">💡 Try searching for brands, products, or categories</span>
-              <div className="flex items-center gap-2 text-xs bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
-                <Sparkles className="w-3 h-3" />
-                <span>Smart search enabled</span>
-              </div>
-            </div>
-          )}
-        </div>
+    <div className="px-4 lg:px-12 py-8 border-b flex flex-col gap-4 w-full" style={{
+        backgroundColor: activeCategoryColor
+    }}>
+        <SearchInput defaultValue={filters.search} onChange={ (value) => setFilters({
+            search: value
+        })}/>
         
-        {/* Categories section - desktop only */}
-        <div className="hidden lg:block">
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium text-slate-700/90">Browse Categories</h3>
-              <div className="text-xs text-slate-600/70 bg-white/20 px-2 py-1 rounded-full backdrop-blur-sm">
-                {data.length} categories
-              </div>
-            </div>
-            <Categories data={data} />
-          </div>
-        </div>
-        
-        {/* Breadcrumb navigation */}
-        <div className="pt-2">
-          <BreadcrumbNavigation
-            activeCategory={activeCategory}
-            activeCategoryName={activeCategoryName}
-            activeSubcategoryName={activeSubcategoryName}
-          />
-        </div>
+        {/* BREADCRUMB FIRST */}
+        <BreadcrumbNavigation 
+          activeCategory={activeCategory}
+          activeCategoryName={activeCategoryName}
+          activeSubcategoryName={activeSubcategoryName}
+        />
 
-        {/* Category info panel */}
+        {/* CATEGORY INFO PANEL - MOVED BEFORE CATEGORIES */}
         {activeCategoryData && activeCategory !== "all" && (
           <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 border border-white/30">
             <div className="flex items-center gap-3">
-              <div 
-                className={cn(
-                    "w-3 h-3 rounded-full shadow-sm",
-                    !activeCategoryData.color && "bg-slate-300" // Tailwind fallback
-                )} 
-                style={{ 
-                    backgroundColor: activeCategoryData.color || undefined 
-                }} 
-                />
+              <div className="w-3 h-3 rounded-full shadow-sm" style={{ 
+                  backgroundColor: activeCategoryData.color || undefined 
+              }} />
               <div>
                 <h4 className="font-semibold text-slate-800">{activeCategoryData.name}</h4>
                 {activeCategoryData.subcategories && (
@@ -117,14 +62,14 @@ export const SearchFilters = () => {
             </div>
           </div>
         )}
-      </div>
 
-      {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-b from-transparent to-white/20" />
+        {/* CATEGORIES LAST - SO SUBMENUS APPEAR ON TOP */}
+        <div className="hidden lg:block">
+          <Categories data={data}/>
+        </div>
     </div>
   );
 };
-
 export const SearchFiltersSkeleton = () => {
   return (
     <div

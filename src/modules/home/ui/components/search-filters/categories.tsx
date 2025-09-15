@@ -34,18 +34,18 @@ export const Categories = ({ data }: Props) => {
 
       const containerWidth = containerRef.current.offsetWidth;
       const viewAllWidth = viewAllRef.current.offsetWidth;
-      const availableWidth = containerWidth - viewAllWidth - 32; // Add some padding
+      const availableWidth = containerWidth - viewAllWidth - 32;
       const items = Array.from(measureRef.current.children);
       let totalWidth = 0;
       let visible = 0;
 
       for (const item of items) {
-        const width = item.getBoundingClientRect().width + 8; // Add gap
+        const width = item.getBoundingClientRect().width + 8;
         if (totalWidth + width > availableWidth) break;
         totalWidth += width;
         visible++;
       }
-      setVisibleCount(Math.max(1, visible)); // Ensure at least one item is visible
+      setVisibleCount(Math.max(1, visible));
     };
 
     const resizeObserver = new ResizeObserver(calculateVisible);
@@ -56,7 +56,7 @@ export const Categories = ({ data }: Props) => {
   }, [data.length]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full py-4">
       <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
 
       {/* Measurement div */}
@@ -79,11 +79,11 @@ export const Categories = ({ data }: Props) => {
       {/* Visible categories */}
       <div
         ref={containerRef}
-        className="flex items-center gap-2 overflow-hidden"
+        className="flex items-center gap-4 overflow-hidden py-3"
         onMouseEnter={() => setIsAnyHovered(true)}
         onMouseLeave={() => setIsAnyHovered(false)}
       >
-        <div className="flex items-center gap-2 flex-1 min-w-0">
+        <div className="flex items-center gap-4 flex-1 min-w-0">
           {data.slice(0, visibleCount).map((category) => (
             <div key={category.id} className="flex-shrink-0">
               <CategoryDropdown
@@ -92,7 +92,7 @@ export const Categories = ({ data }: Props) => {
                 isNavigationHovered={isAnyHovered}
               />
             </div>
-          ))}
+            ))}
         </div>
 
         <div ref={viewAllRef} className="flex-shrink-0">
