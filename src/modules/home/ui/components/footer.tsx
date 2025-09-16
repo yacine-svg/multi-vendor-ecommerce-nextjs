@@ -183,4 +183,4 @@ const FooterLink = ({ href, children, className = "" }: { href: string; children
     </Link>
 );
 
-export default Footer
+export default Footer;
