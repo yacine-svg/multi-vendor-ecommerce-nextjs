@@ -28,7 +28,7 @@ export const CategoryDropdown = ({
     if (dropdownRef.current) {
       const rect = dropdownRef.current.getBoundingClientRect();
       setPosition({
-        top: rect.bottom + window.scrollY + 8, // Added 8px spacing
+        top: rect.bottom + window.scrollY + 12,
         left: rect.left + window.scrollX
       });
     }
@@ -52,16 +52,16 @@ export const CategoryDropdown = ({
     }, 200);
   };
 
-  // Update position on resize and scroll
   useEffect(() => {
     if (isOpen) {
       updatePosition();
-      window.addEventListener('resize', updatePosition);
-      window.addEventListener('scroll', updatePosition, true);
+      const handleUpdate = () => updatePosition();
+      window.addEventListener('resize', handleUpdate);
+      window.addEventListener('scroll', handleUpdate, true);
       
       return () => {
-        window.removeEventListener('resize', updatePosition);
-        window.removeEventListener('scroll', updatePosition, true);
+        window.removeEventListener('resize', handleUpdate);
+        window.removeEventListener('scroll', handleUpdate, true);
       };
     }
   }, [isOpen]);
@@ -71,7 +71,7 @@ export const CategoryDropdown = ({
   return (
     <>
       <div
-        className="relative py-2" // Added vertical padding here
+        className="relative"
         ref={dropdownRef}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -80,24 +80,38 @@ export const CategoryDropdown = ({
           variant="ghost"
           size="sm"
           className={cn(
-            "relative rounded-full px-4 py-4 font-medium transition-all duration-200", // Increased vertical padding from py-3 to py-4
+            "relative rounded-full px-4 py-3 font-medium transition-all duration-300 ease-out",
             "border-2 border-transparent text-slate-700",
-            "hover:bg-white/90 hover:border-slate-200 hover:text-slate-900 hover:shadow-lg hover:scale-105 transform",
-            "backdrop-blur-sm",
-            isActive && "bg-white border-slate-300 text-slate-900 shadow-lg scale-105",
-            isOpen && "bg-white border-slate-300 text-slate-900 shadow-xl scale-105 -translate-y-0.5",
+            "hover:bg-white/90 hover:border-slate-200 hover:text-slate-900 hover:shadow-lg",
+            "hover:scale-[1.02] transform will-change-transform",
+            "backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/20",
+            isActive && [
+              "bg-white border-slate-300 text-slate-900 shadow-lg scale-[1.02]",
+              "ring-2 ring-blue-500/10"
+            ],
+            isOpen && [
+              "bg-white border-slate-300 text-slate-900 shadow-xl scale-[1.02]",
+              "ring-2 ring-blue-500/20 -translate-y-0.5"
+            ],
             !isActive && !isOpen && isNavigationHovered && "bg-white/60 border-slate-100"
           )}
           asChild
         >
           <Link href={`/${category.slug === "all" ? "" : category.slug}`}>
             <span className="flex items-center gap-1.5">
-              {isActive && <Dot className="w-4 h-4 text-blue-500 -ml-1" />}
-              {category.name}
+              {isActive && (
+                <Dot className="w-4 h-4 text-blue-500 -ml-1 animate-pulse" />
+              )}
+              <span className="relative">
+                {category.name}
+                {isActive && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-500/30 rounded-full" />
+                )}
+              </span>
               {hasSubcategories && (
                 <ChevronDown 
                   className={cn(
-                    "w-3 h-3 transition-all duration-200",
+                    "w-3 h-3 transition-all duration-300 ease-out",
                     isOpen && "rotate-180 scale-110"
                   )} 
                 />
@@ -107,7 +121,6 @@ export const CategoryDropdown = ({
         </Button>
       </div>
 
-      {/* Render submenu as a portal */}
       <SubcategoryMenu 
         category={category} 
         isOpen={isOpen}

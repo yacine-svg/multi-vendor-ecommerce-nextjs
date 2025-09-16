@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { BookmarkCheck, Search, Grid3X3, X, Sparkles } from "lucide-react";
+import { BookmarkCheck, Search, Grid3X3, X, Sparkles, Loader2 } from "lucide-react";
 import { CategoriesSidebar } from "./categories-sidebar";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -19,16 +19,23 @@ export const SearchInput = ({ disabled, defaultValue, onChange }: Props) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const trpc = useTRPC();
   const session = useQuery(trpc.auth.session.queryOptions());
 
   useEffect(() => {
+    if (searchValue !== defaultValue) {
+      setIsSearching(true);
+    }
+    
     const timeoutId = setTimeout(() => {
       onChange?.(searchValue);
+      setIsSearching(false);
     }, 500);
+    
     return () => clearTimeout(timeoutId);
-  }, [searchValue, onChange]);
+  }, [searchValue, onChange, defaultValue]);
 
   const clearSearch = () => {
     setSearchValue("");
@@ -50,33 +57,36 @@ export const SearchInput = ({ disabled, defaultValue, onChange }: Props) => {
       <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
       
       <div className="relative flex-1">
-        {/* Main search input */}
         <div
           className={cn(
-            "relative rounded-2xl border-2 transition-all duration-300",
-            "bg-white/90 backdrop-blur-md shadow-lg",
+            "relative rounded-2xl border-2 transition-all duration-300 ease-out",
+            "bg-white/90 backdrop-blur-md shadow-lg will-change-transform",
             isFocused
-              ? "border-blue-400 shadow-xl shadow-blue-100/50 bg-white"
-              : "border-slate-200 hover:border-slate-300",
+              ? "border-blue-400 shadow-xl shadow-blue-100/50 bg-white scale-[1.01]"
+              : "border-slate-200 hover:border-slate-300 hover:shadow-xl",
             disabled && "opacity-50 cursor-not-allowed"
           )}
         >
-          {/* Search icon */}
+          {/* Search icon with loading state */}
           <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
-            <Search 
-              className={cn(
-                "w-5 h-5 transition-colors duration-200",
-                isFocused ? "text-blue-500" : "text-slate-400"
-              )} 
-            />
+            {isSearching ? (
+              <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />
+            ) : (
+              <Search 
+                className={cn(
+                  "w-5 h-5 transition-all duration-200",
+                  isFocused ? "text-blue-500 scale-110" : "text-slate-400"
+                )} 
+              />
+            )}
           </div>
 
-          {/* Input field */}
           <Input
             className={cn(
               "pl-12 pr-12 py-4 bg-transparent border-none shadow-none text-lg",
               "placeholder:text-slate-400 text-slate-700",
-              "focus-visible:ring-0 focus-visible:ring-offset-0"
+              "focus-visible:ring-0 focus-visible:ring-offset-0",
+              "transition-all duration-200"
             )}
             placeholder="Search products, brands, categories..."
             disabled={disabled}
@@ -86,39 +96,51 @@ export const SearchInput = ({ disabled, defaultValue, onChange }: Props) => {
             onBlur={handleBlur}
           />
 
-          {/* Clear button */}
+          {/* Clear button with better animation */}
           {searchValue && (
             <button
               onClick={clearSearch}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full hover:bg-slate-100 transition-colors"
+              className={cn(
+                "absolute right-4 top-1/2 -translate-y-1/2 z-10",
+                "p-1.5 rounded-full hover:bg-slate-100 transition-all duration-200",
+                "hover:scale-110 transform will-change-transform",
+                "focus:outline-none focus:bg-slate-100 focus:ring-2 focus:ring-blue-500/20"
+              )}
             >
               <X className="w-4 h-4 text-slate-400 hover:text-slate-600" />
             </button>
           )}
 
-          {/* Decorative elements */}
+          {/* Enhanced decorative elements */}
           {isFocused && (
             <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-              <div className="absolute top-0 left-1/4 w-8 h-8 bg-blue-100 rounded-full blur-xl opacity-50 animate-pulse" />
-              <div className="absolute bottom-0 right-1/4 w-6 h-6 bg-purple-100 rounded-full blur-lg opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
+              <div className="absolute top-2 left-1/4 w-8 h-8 bg-blue-200/30 rounded-full blur-xl animate-pulse" />
+              <div className="absolute bottom-2 right-1/4 w-6 h-6 bg-purple-200/20 rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }} />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-blue-200/10 to-transparent" />
             </div>
           )}
         </div>
         
-        {/* Search suggestions */}
+        {/* Enhanced suggestions */}
         {showSuggestions && searchValue && !disabled && (
-          <div className="absolute top-full left-0 right-0 mt-2 p-4 bg-white/95 backdrop-blur-md rounded-xl border border-slate-200 shadow-xl z-50 animate-in slide-in-from-top-2 duration-200">
-            <div className="flex items-center gap-2 text-sm text-slate-600 mb-2">
-              <Sparkles className="w-4 h-4" />
+          <div className={cn(
+            "absolute top-full left-0 right-0 mt-3 p-4",
+            "bg-white/98 backdrop-blur-md rounded-xl border border-slate-200/50 shadow-xl z-50",
+            "animate-in slide-in-from-top-2 fade-in duration-200"
+          )}>
+            <div className="flex items-center gap-2 text-sm text-slate-600 mb-3">
+              <Sparkles className="w-4 h-4 text-amber-500" />
               <span>Search suggestions</span>
             </div>
-            <div className="space-y-2">
-              <div className="p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors">
-                <span className="text-slate-800">Search for  &quot;{searchValue}&quot; in all categories</span>
-              </div>
-              <div className="p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors">
-                <span className="text-slate-800">Find similar products</span>
-              </div>
+            <div className="space-y-1">
+              <button className="w-full p-3 text-left hover:bg-slate-50 rounded-lg cursor-pointer transition-all duration-200 hover:scale-[1.01] transform group">
+                <span className="text-slate-800 group-hover:text-slate-900">
+                  Search for <strong>&quot;{searchValue}&quot;</strong> in all categories
+                </span>
+              </button>
+              <button className="w-full p-3 text-left hover:bg-slate-50 rounded-lg cursor-pointer transition-all duration-200 hover:scale-[1.01] transform group">
+                <span className="text-slate-800 group-hover:text-slate-900">Find similar products</span>
+              </button>
             </div>
           </div>
         )}
@@ -131,7 +153,9 @@ export const SearchInput = ({ disabled, defaultValue, onChange }: Props) => {
         className={cn(
           "lg:hidden rounded-2xl px-3 py-3 border-2 transition-all duration-200",
           "border-slate-200 bg-white/90 backdrop-blur-md shadow-lg",
-          "hover:bg-white hover:border-slate-300 hover:shadow-xl hover:scale-105 transform"
+          "hover:bg-white hover:border-slate-300 hover:shadow-xl",
+          "hover:scale-105 transform will-change-transform",
+          "focus:outline-none focus:ring-2 focus:ring-blue-500/20"
         )}
         onClick={() => setIsSidebarOpen(true)}
       >
@@ -147,7 +171,9 @@ export const SearchInput = ({ disabled, defaultValue, onChange }: Props) => {
           className={cn(
             "gap-2 rounded-2xl border-2 transition-all duration-200",
             "border-slate-200 bg-white/90 backdrop-blur-md shadow-lg",
-            "hover:bg-white hover:border-slate-300 hover:shadow-xl hover:scale-105 transform"
+            "hover:bg-white hover:border-slate-300 hover:shadow-xl",
+            "hover:scale-105 transform will-change-transform",
+            "focus-within:ring-2 focus-within:ring-blue-500/20"
           )}
         >
           <Link prefetch href="/library">
